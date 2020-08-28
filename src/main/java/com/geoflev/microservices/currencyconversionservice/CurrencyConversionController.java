@@ -3,6 +3,8 @@ package com.geoflev.microservices.currencyconversionservice;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +14,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
-@RestController
+@RestController	
 public class CurrencyConversionController {
 	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private CurrencyExchangeServiceProxy proxy;
@@ -44,6 +47,8 @@ public class CurrencyConversionController {
 		//antikathista olo ton apo panw kwdika
 		//ta 2 url bgazoun to idio apotelesma
 		CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
+		
+		logger.info("{}",response);
 
 		return new CurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), quantity,
 				quantity.multiply(response.getConversionMultiple()), response.getPort());

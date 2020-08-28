@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 //@FeignClient(name="currency-exchange-service", url="localhost:8000")
 //afou kanw load balancing me to ribbon pleon de xreiazomai to url
 //tha to kanw configure sto application.properties
-
+	
 
 //allazw to feign wste na briskei ton exchange app mesw api gateway (Zuul) anti gia directly
 //@FeignClient(name="currency-exchange-service")
